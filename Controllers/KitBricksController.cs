@@ -15,6 +15,20 @@ namespace Legoland.Controllers
         {
             _service = service;
         }
+        //GET
+        [HttpGet]
+        public ActionResult<IEnumerable<KitBrick>> Get()
+        {
+            try
+            {
+                return Ok(_service.Get());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
 
         //POST
         [HttpPost]

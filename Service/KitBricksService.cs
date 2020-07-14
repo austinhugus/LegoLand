@@ -26,6 +26,11 @@ namespace Legoland.Services
             return newKitBrick;
         }
 
+        internal IEnumerable<KitBrick> Get()
+        {
+            return _repo.GetAll();
+        }
+
         public DTOKitBrick Delete(int id)
         {
             DTOKitBrick exists = Get(id);
@@ -33,7 +38,7 @@ namespace Legoland.Services
             return exists;
         }
 
-        public IEnumerable<KitBrick> GetIngsByTacoId(int id)
+        public IEnumerable<KitBrick> GetBricksByKitId(int id)
         {
             return _repo.GetBricksByKitId(id);
         }

@@ -24,12 +24,18 @@ namespace Legoland.Repositories
         internal int Create(DTOKitBrick newDTOKitBrick)
         {
             string sql = @"
-        INSERT INTO kitbrickcs
+        INSERT INTO kitbricks
         (kitId, brickId)
         VALUES
         (@KitId, @BrickId);
         SELECT LAST_INSERT_ID();";
             return _db.ExecuteScalar<int>(sql, newDTOKitBrick);
+        }
+
+        internal IEnumerable<KitBrick> GetAll()
+        {
+            string sql = "SELECT * FROM kitbricks";
+            return _db.Query<KitBrick>(sql);
         }
 
         internal void Delete(int Id)
