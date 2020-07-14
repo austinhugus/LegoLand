@@ -17,7 +17,7 @@ namespace Legoland.Repositories
 
         internal DTOKitBrick GetById(int Id)
         {
-            string sql = "SELECT * FROM kirbricks WHERE id = @Id";
+            string sql = "SELECT * FROM kitbricks WHERE id = @Id";
             return _db.QueryFirstOrDefault<DTOKitBrick>(sql, new { Id });
         }
 

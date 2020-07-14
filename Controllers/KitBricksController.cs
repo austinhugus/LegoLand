@@ -16,12 +16,12 @@ namespace Legoland.Controllers
             _service = service;
         }
         //GET
-        [HttpGet]
-        public ActionResult<IEnumerable<KitBrick>> Get()
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<KitBrick>> Get(int id)
         {
             try
             {
-                return Ok(_service.Get());
+                return Ok(_service.Get(id));
             }
             catch (Exception e)
             {
