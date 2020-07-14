@@ -7,29 +7,46 @@ namespace Legoland.Services
 {
     public class BricksService
     {
-        internal object Get()
+        private readonly BricksRepository _repo;
+        public BricksService(BricksRepository repo)
         {
-            throw new NotImplementedException();
+            _repo = repo;
         }
-        internal object Get(int id)
+
+
+        internal IEnumerable<Brick> Get()
         {
-            throw new NotImplementedException();
+            return _repo.Get();
+        }
+        internal Brick Get(int Id)
+        {
+            Brick exists = _repo.GetById(Id);
+            if (exists == null) { throw new Exception("Invalid Brick Dawg!"); }
+            return exists;
         }
 
         internal object Create(Brick newBrick)
         {
-            throw new NotImplementedException();
+            int id = _repo.Create(newBrick);
+            newBrick.Id = id;
+            return newBrick;
         }
-
-        internal object Delete(int id)
+        public Brick Edit(Brick editBrick)
         {
-            throw new NotImplementedException();
+            Brick original = Get(editBrick.Id);
+            original.Name = editBrick.Name.Length > 0 ? editBrick.Name : original.Name;
+            original.Color = editBrick.Color != null ? editBrick.Color : original.Color;
+            original.Description = editBrick.Description.Length > 0 ? editBrick.Description : original.Description;
+            return _repo.Edit(original);
         }
 
-        internal object Edit(Brick newBrick)
+        public Brick Delete(int id)
         {
-            throw new NotImplementedException();
+            Brick exists = Get(id);
+            _repo.Delete(id);
+            return exists;
         }
-
     }
+
+
 }

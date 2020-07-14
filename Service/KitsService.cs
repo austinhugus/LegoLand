@@ -29,14 +29,6 @@ namespace Legoland.Services
             newKit.Id = id;
             return newKit;
         }
-
-        public Kit Delete(int id)
-        {
-            Kit exists = Get(id);
-            _repo.Delete(id);
-            return exists;
-        }
-
         public Kit Edit(Kit editKit)
         {
             Kit original = Get(editKit.Id);
@@ -45,6 +37,14 @@ namespace Legoland.Services
             original.Description = editKit.Description.Length > 0 ? editKit.Description : original.Description;
             return _repo.Edit(original);
         }
+
+        public Kit Delete(int id)
+        {
+            Kit exists = Get(id);
+            _repo.Delete(id);
+            return exists;
+        }
+
 
     }
 }

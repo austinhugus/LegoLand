@@ -33,6 +33,8 @@ namespace Legoland
             services.AddScoped<IDbConnection>(x => CreateDBContext());
             services.AddTransient<KitsService>();
             services.AddTransient<KitsRepository>();
+            services.AddTransient<BricksService>();
+            services.AddTransient<BricksRepository>();
         }
 
         private IDbConnection CreateDBContext()
